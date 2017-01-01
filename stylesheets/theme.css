@@ -1,0 +1,499 @@
+﻿/* General Divison and iFrame*/
+div {
+	margin: 0px 0px 0px 0px;
+/*	border: 0px solid rgba(0, 0, 0, .5);*/
+	padding: 0px;
+}
+iframe {
+	margin: 0px 0px 0px 0px;
+	border: 1px gray dashed;
+	padding: 0px 0px 0px 0px;
+}
+/* General Link */
+.whiteLink{
+	color: white;
+	}
+.whiteLink:visited{
+	color: grey;
+	}
+.whiteLink:active{
+	color: grey;
+	}
+.aSelector{
+	display:block;
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+	text-decoration:none;
+	color: black;
+	}
+.aSelector:active{
+	color: black;
+	}
+.aSelector:visited{
+	color: black;
+	}
+.OrangeLink{
+	padding:4px 2px 4px 2px;
+	}
+.OrangeLink:hover {
+	background-color: #ef9e56; /*light orange #ef9e56*/
+	box-shadow: 2px 2px 6px black;
+}
+.OrangeLink:active {
+	box-shadow: none;
+	padding: 6px 0px 2px 4px;
+	}
+/* Main page Body background */
+#mainBody {
+	margin: 0px 0px 0px 0px;
+	background: #b27b45 url('../images/IMG_9205_woodboardvert.jpg') repeat-x left top; /*#3b1e0d url('../images/Background/IMG_9207_prespectivedark3_lowrez1.jpg')*/
+/*	background-attachment:fixed;*/
+/*	background-size: cover; */
+	}
+#top{
+	height:10px
+	}
+/* Definition of Top Header Division */
+#topDiv {
+/*	height:200px; /*120px;*/
+	width:980px;
+/*	width:100%;*/
+	margin:0px auto 0px auto;
+	overflow:hidden;
+	background-color:white;
+	position:relative;
+	}
+#headerIcon{
+	text-align:left;
+	margin:8px 10px 0px 20px;
+	padding: 0px 0px 0px 140px;
+	}
+.horzCenterMargin{
+	margin:0px auto 0px auto;
+	}
+.headCell{
+	width:25%;
+	font-family:"Georgia";
+	font-weight:700;
+	font-size:1.05em;
+	background-color:transparent;
+	text-decoration:none;
+	box-shadow: none;
+	}
+.headTable{
+	margin:0px auto 0px auto;
+	width:60%;
+	border-collapse: separate;
+	border-spacing: 10px 4px;
+	}
+#google_translate_element{
+	position:absolute;
+	text-align:right;
+	right:0px;
+	top:0px;
+/*	float: right;*/
+	height: 60px;
+	width: 166px;
+	margin:5px 5px 0px 0px;
+	}
+.DropMenu{
+	width:100%;
+	margin:6px 0px 10px 0px;
+	text-align:center;
+	display:none;
+}
+
+/* Main Division */
+
+#mainDiv{
+/* 	height:100%;*/
+	width:980px;
+	margin:0px auto 0px auto;
+	overflow:hidden;
+	}
+	
+
+#mainiFrame{
+	height:100%;
+	width:100%;
+	border:0px;
+    overflow:hidden;
+	}
+
+/* Recipe Division */
+#fullRecipeDiv{
+   	position: relative;
+   	overflow: hidden;
+	width:100%;
+	opacity:1;
+	}
+#mainTitleDiv{
+	position:relative;
+	margin: 0px 2px 0px 2px;
+/*	border: 1px solid white; */
+	height:270px;
+/*	width:100%; */
+	-webkit-transition: background-image 1s; /* For Safari 3.1 to 6.0 */
+	transition: background-image 1s;
+/*	background: url('../images/Recipe/Easy-Grilled-Vegetables.jpg') no-repeat center center;
+	background-size: cover; */
+	}
+.darkerBackground {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 0.65;
+	}
+#mainTitleText{
+	width:660px;
+	float: left;
+	position:relative;
+	margin-left: 10px; 
+	z-index=1;
+	}
+#mainTitleImg{
+	float: left;
+	height:224px;
+	width:146px;
+	position:relative;
+/*	left: 20px;
+	top: 20px;*/
+	margin: 20px 20px 20px 20px; 
+	border: 3px solid white;
+	-webkit-transition: background-image 1s; /* For Safari 3.1 to 6.0 */
+	transition: background-image 1s;
+	}
+.mainSubTitleDiv{
+	position: relative;
+	overflow: auto;
+	width:960px;
+	background-color:white;
+	opacity:1;
+	padding: 10px 10px 0px 10px;
+	}
+.mainSubTitleIngr{
+	width:288px;
+	padding: 4px 4px 8px 16px;
+	float: left;
+	font-size:1em;
+	font-family: "Arial";
+	}
+.mainSubTitlePrep{
+	width:638px;
+	padding: 4px 4px 8px 10px;
+	float: left;
+	font-size:1em;
+	font-family: "Arial";
+/*	webkit-text-size-adjust: 100%; not working to avoid text resizing on iPhone...*/
+	}
+.subNoteDiv{
+	position: relative;
+	overflow: auto;
+	background-color:white;
+	opacity:1;
+	padding: 0px 40px 10px 40px;
+	display: table;
+	width:100%;
+	box-sizing: border-box;
+	}
+.subNoteImg{
+	border:0;
+	width:60px;
+	height:60px;
+	text-align: left;
+	}
+.subNote{
+	font-family: "Arial";
+	font-size:1em;
+	color: black;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+	padding: 0px 0px 0px 10px;
+	width:100%;
+	box-sizing: border-box;
+	}
+
+/* Home page recipe list */
+#homeMainDiv{
+   	position: relative;
+   	overflow: hidden;
+	width:100%;
+/*	background-color:white; */
+	opacity:1;
+	}
+
+.homeCatDiv{
+	margin: 10px 10px 4px 10px;
+	width:940px;
+/*	background-color:gray;
+	border: 1px solid black;*/
+	background-color:black;
+	border: 1px solid white;
+	box-shadow: 3px 3px 10px black;
+	padding: 6px 6px 6px 10px;
+	font-size:1.3em;
+	font-family: "Georgia";
+	font-weight: bold;
+	color: white;
+
+	}
+.homeFigDiv{
+   	position: relative;
+	overflow:auto;
+	width:100%;
+	margin: 4px 10px 10px 10px;
+/*	background-color:gray;
+	border: 1px solid black; */
+	padding: 10px;
+	}
+.homeImgList{
+	margin: 10px 10px 10px 10px;
+	float:left;
+	padding: 0px;
+	box-shadow: 3px 3px 10px black;
+	height:160px; /*for 3 per row*/
+/*	height:146px; /*for 4 per row*/
+	width:286px; /*for 3 per row*/
+/*	width:218px; /*for 4 per row*/
+	border: 3px solid white;
+	background-size: cover;
+	position:relative;
+	}
+.homeImg{
+	width:100%;
+}
+.homeImgTitle{
+	position:absolute;
+	top:12px;
+	left:-8px;
+	font-family: "Georgia";
+	color: white;
+	font-size:1em;
+	margin: 0px 0px 0px 0px;
+	background-color:#bd6313;
+	padding: 6px;
+	border: 1px solid white;
+	box-shadow: 3px 3px 10px black;
+	}
+.homeImgNote{
+	position:absolute;
+	right:-8px;
+	bottom:10px;
+	font-family: "Georgia";
+	color: white;
+	font-size:0.8em;
+	margin: 0px 0px 0px 0px;
+	background-color:#009900;
+	padding: 6px;
+	border: 1px solid white;
+	box-shadow: 3px 3px 10px black;
+	}
+
+/* Footer div */
+#footerDiv {
+/*	height:66px;*/
+	width:980px; 
+/*	width:100%; */
+	margin:6px auto 0px auto;
+	overflow:hidden;
+	background-color:white;
+	}
+#footerChef{
+/*	height:40px;
+	width:220px;*/
+	margin:4px;
+	border:0px;
+	padding:0px;
+	float:right;
+/*	text-align:right;*/
+	color: black;
+	font-family: Arial;
+	font-size: 0.8em;
+	font-weight: normal;
+	}
+p.footerChef{
+	color: black;	
+}
+/* Resizing font capability for all browser - using em (1em=16px) */
+body {font-size:100%;}
+
+
+/* General Header and Paragraph */
+h1,h2,p
+{
+color:blue;
+-webkit-margin-before: 0px;
+-webkit-margin-after: 0px;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+
+/* List definition */
+ul {
+	list-style:circle;
+	margin: 0px 0px 0px 0px;
+	padding: 7px 0px 0px 1.2em;
+	}
+ul > li {
+	margin: 0px 0px 7px 0px;
+	font-family: "Arial";
+	font-size:1em;
+	color: black;
+	}
+ol {
+	counter-reset: item;
+	margin: 0px 0px 0px 0px;
+	padding: 7px 0px 0px 1.8em;
+	}
+ol > li {
+	margin: 0px 0px 7px 0px;
+/*	text-indent: -2em;
+	list-style-type: none;*/
+	counter-increment: item;
+	font-family: "Arial";
+	font-size:1em;
+	color: black;
+	}
+/*	':before' doesnt seem to work on Safari
+ol > li:before {
+	display: inline-block;
+	width: 1.5em;
+	padding-right: 0.5em;
+	font-weight: bold;
+	font-family: "Arial";
+	font-size:1em;
+	text-align: right;
+	content: counter(item) ".";
+	color:#666666;
+	}
+*/
+/* Text class section */
+.RecipeTitle {
+	font-family:"Georgia";
+	font-variant: small-caps;
+/*	font-weight:700;*/
+	margin: 22px 0px 6px 0px;
+	font-size:2.5em;
+	color: white;
+	}
+.RecipeInfo {
+	margin: 0px 0px 0px 14px;
+	font-family: "Georgia";
+	font-size:1em;
+	color: white;
+	}
+.RecipeNote {
+	margin: 0px 0px 10px 14px;
+	font-size:1em;
+	color: white;
+	font-family: "Georgia";
+	}
+.RecipeSource {
+	margin: 10px 0px 0px 14px;
+	font-family: "Georgia";
+	font-size:.8em;
+	color: white;
+	}
+.RecipeIngPrep {
+	margin: 0px 0px 0px 0px;
+	font-size:1.2em;
+	font-family: "Arial";
+	color: black;
+	}
+.RecipeSubTitle {
+	margin: 0px 10px 0px 10px;
+	font-weight: bold;
+	font-style:italic;
+	font-size:1.3em;
+	font-family: "Arial";
+	}
+
+/* Button section */
+/* Hearder */
+.headCell{
+	width:25%;
+	font-family:"Georgia";
+	font-weight:700;
+	font-size:1.05em;
+	background-color:transparent;
+	text-decoration:none;
+	box-shadow: none;
+	}
+.headTable{
+	margin:0px auto 0px auto;
+	width:60%;
+	border-collapse: separate;
+	border-spacing: 10px 4px;
+	}
+/* DropMenu Section */
+.menuTable{
+	margin:0px auto 0px auto;
+	width:94%;
+	border-collapse: separate;
+	border-spacing: 10px 4px;
+	}
+.menuCell{
+	width:25%;
+	background-color: #eee;/* grey #eee; */
+	font-family:"Georgia";
+	font-weight:700;
+	font-size:.8em;
+	}
+
+/*Footer button section*/
+.footCell{
+	width:25%;
+	font-family:"Georgia";
+	font-weight:700;
+	font-size:0.8em;
+	background-color:transparent;
+	text-decoration:none;
+	box-shadow: none;
+	}
+.footTable{
+	margin:0px auto 0px auto;
+	width:60%;
+	border-collapse: separate;
+	border-spacing: 10px 4px;
+	}
+
+/* Photo Gallery */
+.galleryFigDiv{
+	box-sizing: border-box;
+	position: relative;
+	overflow:auto;
+	width:100%;
+	margin: 4px 0px 10px 0px;
+
+	}
+.imgGallery{
+	margin: 4px 4px 4px 4px;
+	float:left;
+	padding: 0px;
+	box-shadow: 3px 3px 10px black;
+/*	height:160px; /*for 3 per row*/
+	height:160px; /*for 4 per row*/
+/*	width:286px; /*for 3 per row*/
+	width:232px; /*for 4 per row*/
+	border: 2px solid white;
+	background-size: cover;
+	position:relative;
+	}
+.darkerMouseOver {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 0.65;
+	display:none;
+	}
+.darkerMouseOver:hover{
+	display:block;
+	}
