@@ -39,6 +39,12 @@ $('.gMagPopup').magnificPopup({
 	gallery:{
 		enabled:true,
 		preload: [0,2],
+	},
+	image: {
+		titleSrc: function(item) {
+		return '<a href="' + item.el.attr('linkref') + '"class="whiteLink">' + item.el.attr('title') + '<\a>';
 		}
+	},
+  
 });
 
