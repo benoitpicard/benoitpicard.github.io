@@ -12,16 +12,12 @@ iframe {
 /* General Link */
 .whiteLink{
 	color: white;
-	text-decoration: none;
 	}
 .whiteLink:visited{
-	color: #CCCCCC; /*light grey*/
+	color: grey;
 	}
 .whiteLink:active{
-	color: #CCCCCC; /*light grey*/
-	}
-.whiteLink:hover{
-	text-decoration: underline;
+	color: grey;
 	}
 .aSelector{
 	display:block;
@@ -488,9 +484,6 @@ ol > li:before {
 	background-size: cover;
 	position:relative;
 	}
-.titleMagPopup{
-	
-}
 .darkerMouseOver {
 	position:absolute;
 	left: 0px;
@@ -504,4 +497,3 @@ ol > li:before {
 .darkerMouseOver:hover{
 	display:block;
 	}
-
