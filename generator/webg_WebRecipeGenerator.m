@@ -67,8 +67,8 @@ fprintf(' done (%2.1fs)\n',toc(tic1));tic1=tic;
 
 %% Validate image folder and availability and check for additional images for each recipe
 
-webg_imageFilePath=fullfile(scriptPath,'\images\recipe');
-webg_thumbFilePath=fullfile(scriptPath,'\images\recipe\thumb286');
+webg_imageFilePath=fullfile(fileparts(scriptPath),'\images\recipe');
+webg_thumbFilePath=fullfile(fileparts(scriptPath),'\images\recipe\thumb286');
 [vai_thumbOk,vai_imageOk,vai_addImages]=vai_ValidateImages(rcsv_csvStruc.MAIN_IMAGE,webg_imageFilePath,webg_thumbFilePath);
 
 %% Generate Header HTML
@@ -117,7 +117,7 @@ fprintf(' done (%2.1fs)\n',toc(tic1));tic1=tic;
 fprintf('	Generate Recipe HTML pages (%d)',rcsv_csvStruc.numberValidRecipe);
 
 grh_recipeCell=cell(rcsv_csvStruc.numberValidRecipe,1);
-for recipeNo=1:rcsv_csvStruc.numberValidRecipe;
+for recipeNo=1:rcsv_csvStruc.numberValidRecipe
     grh_recipeCell{recipeNo}=grh_GenerateRecipeHTML( ...
     rcsv_csvStruc.MAIN_TITLE{recipeNo}, ...
     rcsv_csvStruc.MAIN_IMAGE{recipeNo}, ...

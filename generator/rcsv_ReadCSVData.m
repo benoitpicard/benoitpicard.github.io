@@ -256,7 +256,9 @@ StringRep={;
 linkTxt=cell(size(MainTitle));
 
 for iTitle=1:numel(MainTitle)
-    str=MainTitle{iTitle};
+    
+    % Remove trailing spaces
+    str=strtrim(MainTitle{iTitle});
     
     % Lower case
     str = lower(str);
