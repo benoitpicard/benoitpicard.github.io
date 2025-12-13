@@ -16,51 +16,85 @@ function result = gsr_GoogleSheetReader(DOCID)
 %
 
 
-loginURL = 'https://www.google.com'; 
-% csvURL = ['https://docs.google.com/spreadsheet/ccc?key=' DOCID '&output=csv&pref=2'];
+% Build CSV export URL
 csvURL = ['https://docs.google.com/spreadsheets/d/',DOCID,'/export?format=csv&id=',DOCID];
 
-%Step 1: go to google.com to collect some cookies
-cookieManager = java.net.CookieManager([], java.net.CookiePolicy.ACCEPT_ALL);
-java.net.CookieHandler.setDefault(cookieManager);
-handler = sun.net.www.protocol.https.Handler;
-connection = java.net.URL([],loginURL,handler).openConnection();
-connection.getInputStream();
+% Try to read via high-level functions (webread/urlread). If not available, fall back to curl via system command.
+resultChar = '';
+try
+   % Try webread (MATLAB)
+   resultChar = webread(csvURL);
+catch
+   try
+      % Try Octave/MATLAB urlread
+      resultChar = urlread(csvURL);
+   catch
+      try
+         % Fall back to curl (must be available in PATH)
+         [status, out] = system(['curl -L -s "', csvURL, '"']);
+         if status == 0
+            resultChar = out;
+         else
+            error('curl failed');
+         end
+      catch
+         error('Could not download CSV: try curl in PATH or use a MATLAB/Octave build with webread/urlread support');
+      end
+   end
+end
 
-%Step 2: go to the spreadsheet export url and download the csv
-connection2 = java.net.URL([],csvURL,handler).openConnection();
-resultConnect = connection2.getInputStream();
-resultStream=readstream(resultConnect);
-resultChar = native2unicode(resultStream, 'UTF-8');
-
-%Step 3: convert the csv to a cell array
+% Convert CSV text to cell array
 result = parseCsv(resultChar);
 
 end
 
 function data = parseCsv(data)
 % splits data into individual lines
-data = textscan(data,'%s','whitespace','\n');
-data = data{1};
-for ii=1:length(data)
-   %for each line, split the string into its comma-delimited units
-   %the '%q' format deals with the "quoting" convention appropriately.
-   tmp = textscan(data{ii},'%q','delimiter',',');
-   data(ii,1:length(tmp{1})) = tmp{1};
+% Normalize line endings and split into lines
+data = strrep(data, '\r\n', '\n');
+data = strrep(data, '\r', '\n');
+lines = regexp(data, '\n', 'split');
+
+% Parse each line using textscan with %q for quoted fields
+numLines = numel(lines);
+rows = cell(numLines, 1);
+maxCols = 0;
+for ii = 1:numLines
+   line = lines{ii};
+   if isempty(line)
+      tokens = {''};
+   else
+      try
+         % First try textscan (handles quoted fields well in MATLAB/Octave)
+         tmp = textscan(line, '%q', 'delimiter', ',');
+         tokens = tmp{1}(:)'; % row vector of tokens
+      catch
+         % Fall back to regexp-based CSV split that handles quoted fields
+            tokens = regexp(line, '"([^\"]|\"\")*"|[^,]*', 'match');
+      end
+      % Unquote any quoted fields, and unescape double quotes
+      for k = 1:numel(tokens)
+         t = tokens{k};
+         if numel(t) >= 2 && t(1) == '"' && t(end) == '"'
+            t = t(2:end-1);
+            t = strrep(t, '""', '"');
+         end
+         tokens{k} = t;
+      end
+   end
+   rows{ii} = tokens;
+   maxCols = max(maxCols, numel(tokens));
+end
+
+% Assemble into a full cell matrix padded with empty strings where needed
+data = repmat({''}, numLines, maxCols);
+for ii = 1:numLines
+   t = rows{ii};
+   for jj = 1:numel(t)
+      data{ii, jj} = t{jj};
+   end
 end
 
 end
 
-function out = readstream(inStream)
-%READSTREAM Read all bytes from stream to uint8
-%From: http://stackoverflow.com/a/1323535
-
-import com.mathworks.mlwidgets.io.InterruptibleStreamCopier;
-byteStream = java.io.ByteArrayOutputStream();
-isc = InterruptibleStreamCopier.getInterruptibleStreamCopier();
-isc.copyStream(inStream, byteStream);
-inStream.close();
-byteStream.close();
-out = typecast(byteStream.toByteArray', 'uint8'); 
-
-end
+% readstream is no longer used in this Octave-compatible version.

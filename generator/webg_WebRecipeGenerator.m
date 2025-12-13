@@ -27,12 +27,7 @@ fprintf('	Loading CSV... ');
 RecetteDeSteph_GDocsKEY='1jQ3E2Cv-1yFL_AYD2e2ao0PH2OBt-jPtys_3i-e11Nw';
 CSVTxt=gsr_GoogleSheetReader(RecetteDeSteph_GDocsKEY);
 
-% % temp usage of csv in windows directory
-% filepath='B:\OneDrive\Projects\Web\Site\Cuisine de Steph (matlab)\DriveData';
-% filename='GoogleDriveCopy.xlsx';
-% 
-% [~, CSVTxt, CSVData] = xlsread(fullfile(filepath,filename));
-% fprintf(' done (%2.1fs)\n',toc(tic1));tic1=tic;
+fprintf(' done (%2.1fs)\n',toc(tic1));tic1=tic;
 
 fprintf('	Assigning data from CSV... ');
 
@@ -139,11 +134,23 @@ for recipeNo=1:rcsv_csvStruc.numberValidRecipe
 end
 fprintf(' done (%2.1fs)\n',toc(tic1));tic1=tic;
 
-%% Generate Final HTML and save pages
-fprintf('	Saving HTML pages (%d)',rcsv_csvStruc.numberValidRecipe+1);
-
 % Output foler
 webg_outFilePath=fileparts(scriptPath);
+
+% Clean existing HTML files in output folder so stale pages are removed before generation
+oldHtmlFiles = dir(fullfile(webg_outFilePath, '*.html'));
+fprintf('\tCleaning old HTML files (%d) ', numel(oldHtmlFiles));
+for k = 1:numel(oldHtmlFiles)
+    try
+        delete(fullfile(webg_outFilePath, oldHtmlFiles(k).name));
+    catch
+        fprintf('\n\tWarning: could not delete %s\n', fullfile(webg_outFilePath, oldHtmlFiles(k).name));
+    end
+end
+fprintf('done\n');
+
+%% Generate Final HTML and save pages
+fprintf('	Saving HTML pages (3 main + %d recipes)',rcsv_csvStruc.numberValidRecipe);
 
 % Home page
 webg_outFileName='index.html';

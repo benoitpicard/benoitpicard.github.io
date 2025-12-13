@@ -92,7 +92,7 @@ if start>i
     i=start;
 elseif isempty(i)
     i=numel(array);
-    
+
     % Avoid END COL if present
     if strcmpi(array(i),'END COL')
         i=i-1;
@@ -116,11 +116,11 @@ a1da_propList=data(:,1);
 
 % loop for each 1D property
 for i=1:numel(names)
-    
+
     a1da_rowIndex=fime(names{i},a1da_propList);
     a1da_slicedData=data(a1da_rowIndex,colstart:colend);
     a1da_evalString=['structData.',strrep(names{i},'rcsv_',''),'=a1da_slicedData;'];
-    
+
     %  assign array to each 1D property
     eval(a1da_evalString);
 end
@@ -136,19 +136,19 @@ a2da_propList=data(:,1);
 
 % loop for each 1D property
 for i=1:numel(names)
-    
+
     a2da_rowIndex=fime(names{i},a2da_propList);
-    
+
     for j=colstart:colend
         a2da_propSliceEndIndex=fife(0,data(a2da_rowIndex+1:a2da_rowIndex+size(i),j));
-        
+
         a2da_slicedData=data(a2da_rowIndex+1:a2da_rowIndex+a2da_propSliceEndIndex,j);
         a2da_evalString=['structData.',strrep(names{i},'rcsv_',''),'{',num2str(j-colstart+1),'}=a2da_slicedData;'];
-        
+
         %  assign array to each 2D property
         eval(a2da_evalString);
     end
-    
+
 end
 
 structDataFilled=structData;
@@ -162,23 +162,23 @@ dfcl_CatListCount=0;
 dfcl_CatMenuNoCount=0;
 % Go through each Pattern (valid category)
 for iPatt=1:numel(pattern_array)
-    
+
     menuMatch=find(strcmpi(pattern_array{iPatt},categ_array));
-    
+
     if ~isempty(menuMatch)
         dfcl_CatListCount=dfcl_CatListCount+1;
         dfcl_CatList{dfcl_CatListCount}=pattern_array{iPatt};
-        
+
         %  for each matching string
         %  if the string match the pattern, built the final Category list
         %  and create a vector of each menu no that match that category
         for iCateg=menuMatch
             dfcl_CatMenuNoCount=dfcl_CatMenuNoCount+1;
-            
+
             dfcl_CatMenuNo{dfcl_CatListCount}=menuMatch;
-            
+
             dfcl_CatOrderMenuList(dfcl_CatMenuNoCount)=iCateg;
-            
+
         end
     end
 end
@@ -197,9 +197,9 @@ dftl_TagList=cell(0);
 %Append all Tags from CSV and remove duplicates
 for iRecipe=menuList
     for iRecTag=1:numel(tagArray2D{iRecipe})
-        
+
         dftl_newTag=tagArray2D{iRecipe}{iRecTag};
-        
+
         % check if the new tag is found in the array, add it if not
         if sum(strcmpi(dftl_TagList,dftl_newTag))==0
             dftl_TagList{numel(dftl_TagList)+1}=dftl_newTag;
@@ -214,18 +214,18 @@ dftl_MenuTagNo=cell(size(menuList));
 
 %Loop through new TagList and assign MenuNo
 for iRecipe=1:numel(menuList)
-    
+
     %reset vector
     dftl_PerMenuTagNoList=[];
-    
+
     for iTag=1:numel(dftl_TagList)
-        
+
         if sum(strcmpi(tagArray2D{menuList(iRecipe)},dftl_TagList{iTag}))>0
             dftl_PerMenuTagNoList(numel(dftl_PerMenuTagNoList)+1)=iTag;
-            
+
             dftl_TagMenuNo{iTag}(numel(dftl_TagMenuNo{iTag})+1)=menuList(iRecipe);
-            
-            
+
+
         end
     end
     %assign array to main array
@@ -245,6 +245,8 @@ StringRep={;
     '(?:ú|ù|û|ü)','u';
     '(?:ç)','c';
     '(?: |'')','-';
+    '"','';        % ADDED: This line handles double quote " with empty string
+    '!','';        % ADDED: This line handles ! with empty string
     };
 %     '[ÁÀÂÃÄ]','A';
 %     '[ÉÈÊË]','E'
@@ -256,18 +258,18 @@ StringRep={;
 linkTxt=cell(size(MainTitle));
 
 for iTitle=1:numel(MainTitle)
-    
+
     % Remove trailing spaces
     str=strtrim(MainTitle{iTitle});
-    
+
     % Lower case
     str = lower(str);
-    
+
     % Remove all accent characther, and replace space or ' by -
     for iStrRep=1:size(StringRep,1)
         str = regexprep(str,StringRep{iStrRep,1},StringRep{iStrRep,2});
     end
-    
+
     linkTxt{iTitle}=str;
 end
 

@@ -19,29 +19,29 @@ try
     fclose(fid2);
     shtm_SaveOk=1;
 catch
-    disp('WOOOW not saving...')
+    fprintf('\nerror in shtm_ with file %s...\n',FileName)
 end
 
 end
 
 function finalHTML=ahtm_assembleHTML(templateCell,htmlCell,htmlMarkerIndex)
-    
+
     templateMarkerIndex=nan(size(htmlMarkerIndex,1)+1,3);
-    
+
     templateMarkerIndex(1,1)=1;
     templateMarkerIndex(2:end,1)=htmlMarkerIndex(:,2);
     templateMarkerIndex(1:end-1,2)=htmlMarkerIndex(:,1);
     templateMarkerIndex(end,2)=numel(templateCell);
 
     templateMarkerIndex(:,3)=templateMarkerIndex(:,2)-templateMarkerIndex(:,1)+1;
-    
+
     templateSectionSize=sum(templateMarkerIndex(:,3));
-    
+
     finalHTML_size=templateSectionSize;
     for iC=1:numel(htmlCell)
         finalHTML_size=finalHTML_size+numel(htmlCell{iC});
     end
-        
+
     finalHTML=cell(finalHTML_size,1);
 
     % For each section, add template HTML followed by section HTML
@@ -52,7 +52,7 @@ function finalHTML=ahtm_assembleHTML(templateCell,htmlCell,htmlMarkerIndex)
             finalHTML{iF}=templateCell{templateMarkerIndex(iC,1)+iT-1};
             iF=iF+1;
         end
-        
+
         %html sections
         if iC<=numel(htmlCell) %skip if bigger then available HTML section
             ahtm_tabAdd=numel(findstr(finalHTML{iF-1},'	'));
@@ -62,6 +62,6 @@ function finalHTML=ahtm_assembleHTML(templateCell,htmlCell,htmlMarkerIndex)
             end
         end
     end
-    
+
 
 end
