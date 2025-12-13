@@ -2,7 +2,7 @@ function ghr_fullHeader=ghr_GenerateHeaderHTML(ActiveCatList,ActiveCatLink,TagLi
 
 
 % Add choice to see all
-ActiveCatList(end+1)={'Voir toutes les catégories'};
+ActiveCatList(end+1)={'Voir toutes les catÃ©gories'};
 ActiveCatLink(end+1)={''};
 
 TagList(end+1)={'Voir tous les tags'};

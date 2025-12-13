@@ -1,6 +1,6 @@
 % Generate HTML pages for Recipe Website
 %
-% © 2014 Author: Benoit Picard
+% Â© 2014 Author: Benoit Picard
 
 %% Start Up
 home;

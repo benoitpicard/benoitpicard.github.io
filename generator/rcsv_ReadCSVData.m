@@ -13,16 +13,16 @@ rcsv_PROP_2D_SIZE=[4,				10,			25,					15,				25,				15,				25,				15];
 
 % Define Valid Category List
 rcsv.VALID_CAT_LIST={
-    'Déjeuners'
+    'DÃ©jeuners'
     'Lunch'
-    'Entrées'
+    'EntrÃ©es'
     'Soupes'
     'Salades'
     'Pasta'
     'Volailles'
     'Poissons et fruits de mer'
     'Viandes rouges'
-    'Plats végétariens'
+    'Plats vÃ©gÃ©tariens'
     'Accompagnement'
     'Desserts'
     };
@@ -238,20 +238,20 @@ end
 function linkTxt=ralk_RemoveAccentLink(MainTitle)
 
 StringRep={;
-    '(?:á|à|â|ã|ä)','a';
-    '(?:é|è|ê|ë)','e';
-    '(?:í|ì|î|ï)','i';
-    '(?:ó|ò|ô|õ|ö)','o';
-    '(?:ú|ù|û|ü)','u';
-    '(?:ç)','c';
+    '(?:Ã¡|Ã |Ã¢|Ã£|Ã¤)','a';
+    '(?:Ã©|Ã¨|Ãª|Ã«)','e';
+    '(?:Ã­|Ã¬|Ã®|Ã¯)','i';
+    '(?:Ã³|Ã²|Ã´|Ãµ|Ã¶)','o';
+    '(?:Ãº|Ã¹|Ã»|Ã¼)','u';
+    '(?:Ã§)','c';
     '(?: |'')','-';
     };
-%     '[ÁÀÂÃÄ]','A';
-%     '[ÉÈÊË]','E'
-%     '[ÍÌÎÏ]','I';
-%     '[ÓÒÔÕÖ]','O';
-%     '[ÚÙÛÜ]','U';
-%     'Ç','C';
+%     '[ÃÃ€Ã‚ÃƒÃ„]','A';
+%     '[Ã‰ÃˆÃŠÃ‹]','E'
+%     '[ÃÃŒÃÃ]','I';
+%     '[Ã“Ã’Ã”Ã•Ã–]','O';
+%     '[ÃšÃ™Ã›Ãœ]','U';
+%     'Ã‡','C';
 
 linkTxt=cell(size(MainTitle));
 
