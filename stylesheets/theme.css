@@ -13,6 +13,7 @@ iframe {
 .whiteLink{
 	color: white;
 	text-decoration: none;
+	text-decoration: underline;
 	}
 .whiteLink:visited{
 	color: #CCCCCC; /*light grey*/
